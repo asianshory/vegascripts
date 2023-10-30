@@ -1,0 +1,110 @@
+if game.PlaceId == 13772394625 then
+    local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+    local Window = OrionLib:MakeWindow({Name = "VegaScripts | Blade Ball", HidePremium = false, IntroText = "discord.gg/vegax", SaveConfig = true, ConfigFolder = "eijah"})
+
+    --notification
+    OrionLib:MakeNotification({
+        Name = "Script Loaded!",
+        Content = "discord.gg/vegax",
+        Image = "rbxassetid://4483345998",
+        Time = 5
+    })
+
+    --tabs
+
+    local MainTab = Window:MakeTab({
+        Name = "Main Hacks",
+        Icon = "rbxassetid://4483345998",
+        PremiumOnly = false
+    })
+
+    local PlayerTab = Window:MakeTab({
+        Name = "PlayerSettings",
+        Icon = "rbxassetid://4483345998",
+        PremiumOnly = false
+    })
+
+    local DeveloperTab = Window:MakeTab({
+        Name = "Developer",
+        Icon = "rbxassetid://4483345998",
+        PremiumOnly = false
+    })
+
+    -- Main Tab
+    MainTab:AddButton({
+        Name = "Auto Parry",
+        Callback = function()
+            getgenv().god = true
+while getgenv().god and task.wait() do
+    for _,ball in next, workspace.Balls:GetChildren() do
+        if ball then
+            if game:GetService("Players").LocalPlayer.Character and game:GetService("Players").LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+                game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position, ball.Position)
+                if game:GetService("Players").LocalPlayer.Character:FindFirstChild("Highlight") then
+                    game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = ball.CFrame * CFrame.new(0, 0, (ball.Velocity).Magnitude * -0.5)
+                    game:GetService("ReplicatedStorage").Remotes.ParryButtonPress:Fire()
+                end
+            end
+        end
+    end
+end
+                  print("button pressed")
+          end    
+    })
+
+    MainTab:AddButton({
+        Name = "Auto Spam",
+        Callback = function()
+            while true do
+                task.wait()
+                local ball = workspace.Balls:FindFirstChildWhichIsA("BasePart")
+                local hum = game.Players.LocalPlayer.Character
+                local balldist = 6
+                if ball then
+                local dist = (ball.Position - hum.HumanoidRootPart.position).Magnitude
+                if dist <= balldist and hum:FindFirstChild("Highlight") then
+                keypress(0x46)
+                end
+                end
+                end
+                  print("button pressed")
+          end    
+    })
+
+    -- PlayerTab
+
+    PlayerTab:AddSlider({
+        Name = "WalkSpeed",
+        Min = 0,
+        Max = 100,
+        Default = 16,
+        Color = Color3.fromRGB(255,255,255),
+        Increment = 1,
+        ValueName = "Speed",
+        Callback = function(Value)
+            game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = (Value)
+            print(Value)
+        end    
+    })
+
+    PlayerTab:AddToggle({
+        Name = "Infinite Jump",
+        Default = false,
+        Callback = function(Value)
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/BsGlitch/-nfJumps/main/BsGlitch"))()
+            print(Value)
+        end    
+    })
+
+    -- DeveloperTab
+
+    DeveloperTab:AddLabel("discord.gg/vegax")
+
+    DeveloperTab:AddParagraph("Hi, discord.gg/vegax","So... yo wsup, this script is made by itsmeshaurya on discord :D but I created this script for my friend 1_F0 (I cant say his real name maybe itll start a controversy.... so yeah maybe joing discord.gg/vegax .kill em all.)")
+
+end
+
+OrionLib:Init()
+
+
+-- made it gg...
